@@ -1,0 +1,19 @@
+<div>
+<! -- interpolation --> 
+<h3>{{PageHeader}}</h3>
+<span>Prod Id : {{Prodid}}</span><br>
+<span>Prod Name : {{ProdName}}</span><br>
+<span>Prod Price : {{Price}}</span><br>
+<span>Total Price with GST:  {{Price + 45}}</span><br>
+<span>Summary : {{getFullProd1DetailsInline()}}</span><br>
+<div style="width: 20%;"><hr/></div>
+
+
+<! -- Property Binding --> 
+<span>Prod Id : <span [innerHtml] ='Prodid2'></span></span><br>
+<span>Prod Name : <span [innerHtml] ='ProdName2'></span></span><br>
+<span>Prod Price : <span [innerHtml] ='Price2'></span></span><br> 
+<span>Total Price with GST:  {{Price2 + 45}}</span><br/>
+<span>Summary : <span [innerHtml] = 'getFullProd2DetailsInline()'></span></span><br>
+<button [disabled]= 'IsDisabled'>click me</button>
+</div>

@@ -1,11 +1,10 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { Customer } from './customer.model';
 
 @Component({
-  selector: 'app-root',
   templateUrl: './customer.component.html',
 })
+
 export class CustomerComponent {
   title = 'DemoProject';
 

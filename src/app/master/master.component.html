@@ -1,1 +1,8 @@
-<p>master works!</p>
+<table>
+    <tr>
+        <td><a [routerLink]="['home']">Home</a></td>
+        <td><a [routerLink]="['customer/add']">Customer</a></td>
+        <td><a [routerLink]="['supplier/add']">Supplier</a></td>
+    </tr>
+    <tr><td><router-outlet></router-outlet></td></tr>
+</table>

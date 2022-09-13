@@ -1,0 +1,16 @@
+<table>
+    <tr>
+    <th *ngFor = "let col of gridcolumns">
+        {{col.colName}}
+    </th>
+    <th>Actions</th>
+    </tr>
+    <tr *ngFor = "let colobj of gridData">
+        <td *ngFor="let col of gridcolumns">
+             {{colobj[col.colName]}}
+        </td>
+        <td>
+            <a (click) ="selectedGrid(colobj)">Edit</a>
+        </td>
+    </tr>
+</table>

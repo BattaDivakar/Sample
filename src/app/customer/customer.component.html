@@ -1,14 +1,14 @@
 <h1>Add Customer</h1>
 Customer Code
-<input [(ngModel)] ="CustomerModel.CustomerCode" type="text"/>
+<input [(ngModel)] ="CustomerModel.CustomerCode" type="text"/><br><br>
 Customer Name
-<input [(ngModel)] ="CustomerModel.CustomerName" type="text"/>
+<input [(ngModel)] ="CustomerModel.CustomerName" type="text"/><br><br>
 Customer Amount
-<input [(ngModel)] ="CustomerModel.CustomerAmount" type="text"/>
+<input [(ngModel)] ="CustomerModel.CustomerAmount" type="text"/><br><br>
 <input type="button" value="Add Customer" (click) ="Add()" />
 <br><br>
 <h2>Customer List</h2>
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>
@@ -33,4 +33,6 @@ Customer Amount
       <td><input type="button" value="Edit" (click) ="Edit()" />&nbsp;<input type="button" value="Delete" (click) ="Delete()" /></td>
     </tr>
   </tbody>
-</table>
+</table>  -->
+<app-grid-ui [grid-columns]="[{'colName':'id'},{'colName':'CustomerCode'},{'colName':'CustomerName'},{'colName':'CustomerAmount'}]" 
+[grid-data]="CustomerModels" (grid-selected) ="EditCustomer($event)" ></app-grid-ui>

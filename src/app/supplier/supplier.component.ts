@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Supplier} from './supplier.model';
 
 @Component({
   selector: 'app-supplier',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupplierComponent implements OnInit {
 
-  constructor() { }
+  SupplierModel : Supplier = new Supplier();
+  SupplierModels : Array<Supplier>  = new Array<Supplier>();
+
+  Add(){
+    this.SupplierModels.push(this.SupplierModel);
+    this.SupplierModel = new Supplier();
+  }
 
   ngOnInit(): void {
   }

@@ -29,6 +29,13 @@ selectedGrid(_selected:any){
   this.emitemitter.emit(_selected);
 }
 
+@Output("grid-deleted")
+deleteemitemitter: EventEmitter<any> = new EventEmitter<any>();
+
+deletedGrid(_deleted:any){
+  this.deleteemitemitter.emit(_deleted);
+}
+
 
 
   

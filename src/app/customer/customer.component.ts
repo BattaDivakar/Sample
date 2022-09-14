@@ -19,7 +19,7 @@ export class CustomerComponent implements OnInit {
    }
 
    Getdatafromserver(): void{
-    this.http.get("http://localhost:3000/customers").subscribe(res=>this.Success(res), res=>console.log(res));
+    this.http.get("http://localhost:48357/Api/Customer").subscribe(res=>this.Success(res), res=>console.log(res));
    }
 
    Success(input:any){
@@ -27,14 +27,21 @@ export class CustomerComponent implements OnInit {
    }
 
  
-
+ isEdit: boolean =false;
   CustomerModel: Customer = new Customer();
   CustomerModels: Array<Customer> = new Array<Customer>();
 
   Add(){
-    // this.CustomerModels.push(this.CustomerModel);
-    // console.log(this.CustomerModels); 
-    this.http.post("http://localhost:3000/customers", this.CustomerModel).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
+    console.log(this.CustomerModel);
+    debugger;
+    if(this.isEdit) 
+    {
+      this.http.put("http://localhost:48357/Api/Customer", this.CustomerModel).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
+    }
+    else{
+      this.http.post("http://localhost:48357/Api/Customer", this.CustomerModel).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
+    }
+    
     this.CustomerModel = new Customer();
   }
 
@@ -42,22 +49,11 @@ export class CustomerComponent implements OnInit {
     this.Getdatafromserver();
   }
 
-  Edit(){
-    // this.CustomerModels.push(this.CustomerModel);
-    // console.log(this.CustomerModels); 
-    this.CustomerModel = new Customer();
-  }
-  Delete(){
-    // if(this.CustomerModels.indexOf(this.CustomerModel) !== -1)
-    // {
-    //   this.CustomerModels.splice(this.CustomerModels.indexOf(this.CustomerModel), 1)
-    // }
-    // console.log(this.CustomerModels); 
-    // this.CustomerModel = new Customer();
-    // this.http.delete("http://localhost:3000/customers"), this.CustomerModel.id).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
-    // this.CustomerModel = new Customer();
-  }
-  EditCustomer(input:any){
+  Edit(input:any){
+    this.isEdit =true;
     this.CustomerModel = input;
+  }
+  Delete(input:any){
+    this.http.delete("http://localhost:48357/Api/Customer?id="+input.id).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
   }
 }

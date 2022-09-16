@@ -1,10 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { GridUIModule } from "../grid-ui/grid-ui.module";
 import { customerroutes } from "../routing/customerroutes";
+import { LoginServiceService } from "../services/login-service.service";
+import { TokenInceptorService } from "../services/token-inceptor.service";
 import { CustomerComponent } from "./customer.component";
 
 @NgModule({
@@ -16,9 +18,10 @@ import { CustomerComponent } from "./customer.component";
         FormsModule,
         HttpClientModule,
         RouterModule.forChild(customerroutes),
-        GridUIModule
+        GridUIModule,
+        ReactiveFormsModule
     ],
-    providers:[],
+    providers:[LoginServiceService, {provide: HTTP_INTERCEPTORS, useClass:TokenInceptorService, multi:true}],
     bootstrap:[CustomerComponent]
 })
 export class CustomerModule {}

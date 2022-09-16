@@ -19,7 +19,7 @@ export class CustomerComponent implements OnInit {
    }
 
    Getdatafromserver(): void{
-    this.http.get("http://localhost:48357/Api/Customer").subscribe(res=>this.Success(res), res=>console.log(res));
+    this.http.get("http://localhost:48357/api/Customer").subscribe(res=>this.Success(res), res=>console.log(res));
    }
 
    Success(input:any){
@@ -34,12 +34,21 @@ export class CustomerComponent implements OnInit {
   Add(){
     console.log(this.CustomerModel);
     debugger;
+    let errormessage = ""
+    if(this.CustomerModel.customerCode == "")
+    {
+        errormessage = "Please enter customer code";
+    }
+    else if(this.CustomerModel.customerName == "")
+    {
+      errormessage = "Please enter customer name";
+    }
     if(this.isEdit) 
     {
-      this.http.put("http://localhost:48357/Api/Customer", this.CustomerModel).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
+      this.http.put("http://localhost:48357/api/Customer", this.CustomerModel).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
     }
     else{
-      this.http.post("http://localhost:48357/Api/Customer", this.CustomerModel).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
+      this.http.post("http://localhost:48357/api/Customer", this.CustomerModel).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
     }
     
     this.CustomerModel = new Customer();
@@ -54,6 +63,6 @@ export class CustomerComponent implements OnInit {
     this.CustomerModel = input;
   }
   Delete(input:any){
-    this.http.delete("http://localhost:48357/Api/Customer?id="+input.id).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
+    this.http.delete("http://localhost:48357/api/Customer?id="+input.id).subscribe( x=> this.Postsuccess(x), x=>console.log(x));
   }
 }
